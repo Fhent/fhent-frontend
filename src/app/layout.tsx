@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import Header from "@/components/Header";
 import "./globals.css";
+import { headers } from "next/headers";
+import ContextProvider from "@/context";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -23,12 +26,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookies = headers().get("cookie");
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} relative grid min-h-screen grid-rows-[auto_1fr_auto] antialiased`}
       >
-        {children}
+        <Header />
+        <ContextProvider cookies={cookies}>{children}</ContextProvider>
       </body>
     </html>
   );

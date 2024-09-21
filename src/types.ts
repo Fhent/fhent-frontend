@@ -6,6 +6,8 @@ export type Token = {
 export type Network = {
   name: string;
   icon: string;
+  color?: string;
+  supported: boolean;
   tokens: Token[];
 };
 

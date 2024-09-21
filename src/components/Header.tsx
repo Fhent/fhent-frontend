@@ -6,10 +6,11 @@ export default function Header() {
       <div className="container flex items-center justify-between p-2">
         <div className="flex items-center gap-2">
           <Image
-            src="/logo/fhenton-logo-mark.png"
+            src="/logo/fhentom-logotype.png"
             alt="fhenton-logo"
-            width={40}
+            width={200}
             height={40}
+            className="h-10 w-auto"
           />
         </div>
         <div className="flex gap-8">

@@ -22,3 +22,5 @@ export const wagmiAdapter = new WagmiAdapter({
 });
 
 export const config = wagmiAdapter.wagmiConfig;
+
+export const SEAL = "0xd84726ad89abd86b49c53f171e321782aec36306367fab234d1720c822302e19";

@@ -32,8 +32,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} relative grid min-h-screen grid-rows-[auto_1fr_auto] antialiased`}
       >
+        <ContextProvider cookies={cookies}>
         <Header />
-        <ContextProvider cookies={cookies}>{children}</ContextProvider>
+        {children}
+        </ContextProvider>
       </body>
     </html>
   );

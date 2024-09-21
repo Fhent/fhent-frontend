@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ConnectWalletButton from "./ConnectButton";
 
 export default function Header() {
   return (
@@ -14,7 +15,7 @@ export default function Header() {
           />
         </div>
         <div className="flex gap-8">
-          <w3m-button />
+          <ConnectWalletButton />
         </div>
       </div>
     </header>

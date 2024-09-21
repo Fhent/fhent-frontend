@@ -28,6 +28,7 @@ export default function NetworkCard({ type = "from" }: NetworkCardProps) {
     targetToken,
     sourceNetwork,
     sourceToken,
+    fetchedAmount
   } = useContext(AppContext);
 
   const [isRecipientAddressInputOpen, setIsRecipientAddressInputOpen] =
@@ -83,7 +84,7 @@ export default function NetworkCard({ type = "from" }: NetworkCardProps) {
               type="text"
               placeholder="0.0"
               disabled={type === "to"}
-              value={type === "to" ? "" : sendAmount}
+              value={type === "to" ? fetchedAmount : sendAmount}
               onChange={handleInputChange}
               className="w-full border-none bg-transparent font-mono text-lg outline-none"
             />

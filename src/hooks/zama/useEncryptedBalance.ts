@@ -90,10 +90,6 @@ const useEncryptedBalance = () => {
     }
   }, [account, zamaClient, encBalance, signer, provider, localStorageKeys]);
 
-  useEffect(() => {
-    getEncryptedBalance();
-  }, [getEncryptedBalance])
-
   return { balance, refetch: getEncryptedBalance };
 }
 

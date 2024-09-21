@@ -7,11 +7,11 @@ const networks: Network[] = [
     color: '#ffffff',
     supported: true,
     tokens: [
-      { symbol: 'FHEWETH', icon: 'ethereum-logo.svg' },
       {
         symbol: 'FHEUSDC',
         icon: 'usdc-logo.svg',
       },
+      { symbol: 'FHEWETH', icon: 'ethereum-logo.svg' },
     ],
   },
   {
@@ -20,11 +20,11 @@ const networks: Network[] = [
     color: '#ffd209',
     supported: true,
     tokens: [
-      { symbol: 'FHEWETH', icon: 'ethereum-logo.svg' },
       {
         symbol: 'FHEUSDC',
         icon: 'usdc-logo.svg',
       },
+      { symbol: 'FHEWETH', icon: 'ethereum-logo.svg' },
     ],
   },
   {

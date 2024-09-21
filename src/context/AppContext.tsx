@@ -133,19 +133,19 @@ export default function AppContextProvider({
     }
   }, [sendAmount]);
 
-  const refetchFhenixBalanceAll = async () => {
-    await refetchFhenixBalance();
-    await refetchFhenixEncBalance();
+  const refetchFhenixBalanceAll = () => {
+    refetchFhenixBalance();
+    refetchFhenixEncBalance();
   };
 
-  const refetchZamaBalanceAll = async () => {
-    await refetchZamaBalance();
-    await refetchZamaEncBalance();
+  const refetchZamaBalanceAll = () => {
+    refetchZamaBalance();
+    refetchZamaEncBalance();
   };
 
-  const refetchAllBalances = async () => {
-    await refetchFhenixBalanceAll();
-    await refetchZamaBalanceAll();
+  const refetchAllBalances = () => {
+    refetchFhenixBalanceAll();
+    refetchZamaBalanceAll();
   };
 
   return (

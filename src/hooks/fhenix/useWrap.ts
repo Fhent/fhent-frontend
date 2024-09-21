@@ -1,6 +1,6 @@
 import abi from "@/config/abi/FhenixWeerc20"
 import addresses from "@/config/addresses"
-import { zamaDevnet } from "@/config/chains"
+import { fhenixHelium } from "@/config/chains"
 import { useCallback } from "react"
 import { useAccount, useConfig, useSwitchChain, useWriteContract } from "wagmi"
 import { waitForTransactionReceipt } from "wagmi/actions"
@@ -13,8 +13,8 @@ const useWrap = (amount: string, refetchBalance?: () => any) => {
 
   const handleWrap = useCallback(async () => {
     let newChainId = chainId
-    if (chainId !== zamaDevnet.chainId) {
-      const newChain = await switchChainAsync({ chainId: zamaDevnet.chainId })
+    if (chainId !== fhenixHelium.chainId) {
+      const newChain = await switchChainAsync({ chainId: fhenixHelium.chainId })
       newChainId = newChain.id
     }
 

@@ -6,8 +6,8 @@ import { useAccount, useClient, useWalletClient } from "wagmi";
 const useZamaClient = () => {
   const { address: account } = useAccount();
   const [client, setClient] = useState<FhevmInstance | null>(null);
-  const { data: walletClient } = useWalletClient({ chainId: zamaDevnet.id })
-  const wagmiClient = useClient({ chainId: zamaDevnet.id });
+  const { data: walletClient } = useWalletClient({ chainId: zamaDevnet.chainId })
+  const wagmiClient = useClient({ chainId: zamaDevnet.chainId });
 
   useEffect(() => {
     const init = async () => {

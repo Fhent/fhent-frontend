@@ -15,8 +15,8 @@ const useUnwrap = (amount: string, refetchBalance?: () => any) => {
 
   const handleUnWrap = useCallback(async () => {
     let newChainId = chainId
-    if (chainId !== fhenixHelium.id) {
-      const newChain = await switchChainAsync({ chainId: fhenixHelium.id })
+    if (chainId !== fhenixHelium.chainId) {
+      const newChain = await switchChainAsync({ chainId: fhenixHelium.chainId })
       newChainId = newChain.id
     }
     const encryptedAmount = await fhenixClient.encrypt_uint64(BigInt(Number(amount) * 10 ** 6))

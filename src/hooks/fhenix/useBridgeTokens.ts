@@ -16,8 +16,8 @@ const useBridgeTokens = (to: `0x${string}`, amount: string, refetchSourceBalance
 
   const handleBridgeTokens = useCallback(async () => {
     let newChainId = chainId
-    if (chainId !== fhenixHelium.id) {
-      const newChain = await switchChainAsync({ chainId: fhenixHelium.id })
+    if (chainId !== fhenixHelium.chainId) {
+      const newChain = await switchChainAsync({ chainId: fhenixHelium.chainId })
       newChainId = newChain.id
     }
 

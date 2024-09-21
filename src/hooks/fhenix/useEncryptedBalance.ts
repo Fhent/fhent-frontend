@@ -9,7 +9,7 @@ import { fhenixHelium } from "@/config/chains";
 
 const useEncryptedBalance = () => {
   const client = useFhenixClient()
-  const signer = useEthersSigner({ chainId: fhenixHelium.id })
+  const signer = useEthersSigner({ chainId: fhenixHelium.chainId })
 
   const [permission, setPermission] = useState<Permission>();
 
@@ -32,7 +32,7 @@ const useEncryptedBalance = () => {
     // @ts-expect-error - permission is not null
     args: [permission!],
     account: signer?.address as `0x${string}`,
-    chainId: fhenixHelium.id,
+    chainId: fhenixHelium.chainId,
   });
 
   console.log({ permission, encBalance, signer });

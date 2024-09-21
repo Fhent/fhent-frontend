@@ -5,6 +5,7 @@ import { useAccount, useConfig, useSwitchChain } from "wagmi"
 import { Contract } from "ethers"
 import useZamaClient from "./useZamaClient"
 import { getWalletClient } from "wagmi/actions"
+import { zamaDevnet } from "@/config/chains"
 
 const useUnwrap = (amount: string, refetchBalance?: () => any) => {
   const zamaClient = useZamaClient()
@@ -14,9 +15,14 @@ const useUnwrap = (amount: string, refetchBalance?: () => any) => {
 
   const handleUnWrap = useCallback(async () => {
     if (!zamaClient || !account) return;
+    let newChainId = chainId
+    if (chainId !== zamaDevnet.chainId) {
+      const newChain = await switchChainAsync({ chainId: zamaDevnet.chainId })
+      newChainId = newChain.id
+    }
     const einput = zamaClient.createEncryptedInput(addresses.zamaWEERC20, account).add64(Number(amount) * 10 ** 6).encrypt();
 
-    const walletClient = await getWalletClient(config, { chainId })
+    const walletClient = await getWalletClient(config, { chainId: newChainId })
 
     // @ts-expect-error - wclient is not null
     const contract = new Contract(addresses.zamaWEERC20, abi, walletClient);

@@ -1,8 +1,11 @@
+"use client";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import networks from "@/config/networks";
 import { Network, Token } from "@/types";
 import { Search } from "lucide-react";
 import Image from "next/image";
+import { useContext } from "react";
+import { AppContext, AppContextType } from "@/context/AppContext";
 
 interface TokenCardProps {
   network: Network;
@@ -55,7 +58,33 @@ const TokenCard = ({
   );
 };
 
-export default function TokenSelector() {
+export default function TokenSelector({
+  destination,
+}: {
+  destination: string;
+}) {
+  const {
+    sourceNetwork,
+    targetNetwork,
+    sourceToken,
+    targetToken,
+    setSourceToken,
+    setTargetToken,
+  } = useContext<AppContextType>(AppContext);
+
+  const selectedNetwork =
+    destination === "from" ? sourceNetwork : targetNetwork;
+
+  const selectedToken = destination === "from" ? sourceToken : targetToken;
+
+  const handleTokenSelect = (token: Token) => {
+    if (destination === "from") {
+      setSourceToken(token);
+    } else {
+      setTargetToken(token);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-3">
       <div className="mx-2 flex justify-between rounded-xl border bg-transparent px-2.5 py-3 text-xs">
@@ -68,15 +97,15 @@ export default function TokenSelector() {
       </div>
 
       <ScrollArea className="h-52 px-2">
-        <TokenCard
-          network={networks[0]}
-          token={networks[0].tokens[0]}
-          isSelected={true}
-        />
-        <TokenCard network={networks[0]} token={networks[0].tokens[0]} />
-        <TokenCard network={networks[0]} token={networks[0].tokens[0]} />
-        <TokenCard network={networks[0]} token={networks[0].tokens[0]} />
-        <TokenCard network={networks[0]} token={networks[0].tokens[0]} />
+        {selectedNetwork.tokens.map((token, index) => (
+          <TokenCard
+            key={index}
+            network={selectedNetwork}
+            token={token}
+            isSelected={selectedToken.symbol === token.symbol}
+            onSelect={() => handleTokenSelect(token)}
+          />
+        ))}
         <ScrollBar orientation="vertical" className="w-1 border-none" />
       </ScrollArea>
     </div>

@@ -19,6 +19,7 @@ export const AppContext = createContext({
   setSourceNetwork: (network: Network) => {},
   setTargetNetwork: (network: Network) => {},
   setSourceToken: (token: Token) => {},
+  setTargetToken: (token: Token) => {},
   setSendAmount: (amount: string) => {},
   recipientAddress: "" as `0x${string}` | "",
   setRecipientAddress: (address: `0x${string}` | "") => {},
@@ -41,6 +42,37 @@ export const AppContext = createContext({
   refetchAllBalances: () => {},
 });
 
+export interface AppContextType {
+  sourceNetwork: Network;
+  targetNetwork: Network;
+  sourceToken: Token;
+  targetToken: Token;
+  sendAmount: string;
+  setSourceNetwork: (network: Network) => void;
+  setTargetNetwork: (network: Network) => void;
+  setSourceToken: (token: Token) => void;
+  setTargetToken: (token: Token) => void;
+  setSendAmount: (amount: string) => void;
+  recipientAddress: `0x${string}` | "";
+  setRecipientAddress: (address: `0x${string}` | "") => void;
+  isFetchingAmount: boolean;
+  setIsFetchingAmount: (isFetching: boolean) => void;
+  fetchedAmount: string;
+  setFetchedAmount: (amount: string) => void;
+  relayerAddress: string;
+  setRelayerAddress: (address: string) => void;
+  fhenixBalance: bigint;
+  zamaBalance: bigint;
+  fhenixEncBalance: bigint;
+  zamaEncBalance: bigint;
+  refetchFhenixBalance: () => void;
+  refetchZamaBalance: () => void;
+  refetchFhenixEncBalance: () => void;
+  refetchZamaEncBalance: () => void;
+  refetchFhenixBalanceAll: () => void;
+  refetchZamaBalanceAll: () => void;
+  refetchAllBalances: () => void;
+}
 export default function AppContextProvider({
   children,
 }: {
@@ -49,6 +81,7 @@ export default function AppContextProvider({
   const [sourceNetwork, setSourceNetwork] = useState<Network>(networks[0]);
   const [targetNetwork, setTargetNetwork] = useState<Network>(networks[1]);
   const [sourceToken, setSourceToken] = useState<Token>(networks[0].tokens[0]);
+  const [targetToken, setTargetToken] = useState<Token>(networks[0].tokens[0]);
   const [recipientAddress, setRecipientAddress] = useState<`0x${string}` | "">(
     "",
   );
@@ -123,11 +156,14 @@ export default function AppContextProvider({
         sourceToken: {
           ...sourceToken,
         },
-        targetToken: networks[1].tokens[0],
+        targetToken: {
+          ...targetToken,
+        },
         sendAmount,
         setSourceNetwork,
         setTargetNetwork,
         setSourceToken,
+        setTargetToken,
         setSendAmount,
         recipientAddress,
         setRecipientAddress,

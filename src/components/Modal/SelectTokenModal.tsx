@@ -14,17 +14,19 @@ import {
   DialogTitle,
 } from "../ui/dialog";
 import networks from "@/config/networks";
-import type { Network, Token } from "@/types";
 import { AppContext } from "@/context/AppContext";
+import type { Network, Token } from "@/types";
 
 interface NetworkSelectorProps {
   network: Network;
   token: Token;
+  destination: string;
 }
 
 export default function SelectTokenModal({
   network,
   token,
+  destination,
 }: NetworkSelectorProps) {
   const { setSourceNetwork, setTargetNetwork } = useContext(AppContext);
   const [selectedNetwork, setSelectedNetwork] = useState<null | string>(null);
@@ -97,7 +99,7 @@ export default function SelectTokenModal({
             />
           </ScrollArea>
         </div>
-        <TokenSelector />
+        <TokenSelector destination={destination} />
       </DialogContent>
     </Dialog>
   );

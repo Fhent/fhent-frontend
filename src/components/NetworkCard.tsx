@@ -93,6 +93,7 @@ export default function NetworkCard({ type = "from" }: NetworkCardProps) {
         <SelectTokenModal
           network={type === "to" ? targetNetwork : sourceNetwork}
           token={type === "to" ? targetToken : sourceToken}
+          destination={type}
         />
       </div>
 

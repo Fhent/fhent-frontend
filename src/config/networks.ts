@@ -2,24 +2,32 @@ import { Network } from "@/types";
 
 const networks: Network[] = [
   {
-    name: 'Fhenix',
-    icon: 'fhenix-logo.svg',
+    name: "Fhenix",
+    icon: "fhenix-logo.svg",
     tokens: [
       {
-        symbol: 'USDC',
-        icon: 'usdc-logo.svg',
-      }
+        symbol: "FHEWETH",
+        icon: "ethereum-logo.svg",
+      },
+      {
+        symbol: "FHEUSDC",
+        icon: "usdc-logo.svg",
+      },
     ],
   },
   {
-    name: 'Zama',
-    icon: 'zama-logo.png',
+    name: "Zama",
+    icon: "zama-logo.png",
 
     tokens: [
       {
-        symbol: 'USDC',
-        icon: 'usdc-logo.svg',
-      }
+        symbol: "FHEWETH",
+        icon: "ethereum-logo.svg",
+      },
+      {
+        symbol: "FHEUSDC",
+        icon: "usdc-logo.svg",
+      },
     ],
   },
 ];

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import NetworkSelector from "./components/NetworkSelector";
@@ -15,24 +15,28 @@ import {
 } from "../ui/dialog";
 import networks from "@/config/networks";
 import type { Network, Token } from "@/types";
+import { AppContext, AppContextType } from "@/context/AppContext";
 
 interface NetworkSelectorProps {
   network: Network;
   token: Token;
+  destination: string;
 }
 
 export default function SelectTokenModal({
   network,
   token,
+  destination,
 }: NetworkSelectorProps) {
   const [selectedNetwork, setSelectedNetwork] = useState<null | string>(null);
 
-  const handleNetworkSelect = (network: string): void => {
-    if (selectedNetwork === network) {
-      setSelectedNetwork(null);
-    } else {
-      setSelectedNetwork(network);
-    }
+  const { setSourceNetwork, setTargetNetwork } =
+    useContext<AppContextType>(AppContext);
+
+  const handleNetworkSelect = (network: Network): void => {
+    setSelectedNetwork(network.name);
+    setSourceNetwork(network);
+    setTargetNetwork(networks[1 - networks.findIndex((n) => n === network)]);
   };
   return (
     <Dialog>
@@ -85,7 +89,7 @@ export default function SelectTokenModal({
                   network={name}
                   imageURL={icon}
                   isSelected={selectedNetwork === name}
-                  onSelect={() => handleNetworkSelect(networks[index].name)}
+                  onSelect={() => handleNetworkSelect(networks[index])}
                 />
               ))}
             </div>
@@ -95,7 +99,7 @@ export default function SelectTokenModal({
             />
           </ScrollArea>
         </div>
-        <TokenSelector />
+        <TokenSelector destination={destination} />
       </DialogContent>
     </Dialog>
   );

@@ -3,6 +3,8 @@ import { useState } from "react";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import NetworkSelector from "./components/NetworkSelector";
+import { ScrollArea, ScrollBar } from "../ui/scroll-area";
+import TokenSelector from "./components/TokenSelector";
 import { Button } from "../ui/button";
 import {
   DialogHeader,
@@ -44,7 +46,7 @@ export default function SelectTokenModal({
             <div className="relative flex size-10 items-center justify-center rounded-full bg-foreground">
               <Image
                 src={`/symbols/${token.icon}`}
-                alt="ethereum-logo"
+                alt={`${token.symbol}-logo`}
                 width={16}
                 height={16}
                 className="size-8"
@@ -52,7 +54,7 @@ export default function SelectTokenModal({
               <div className="absolute -bottom-1 -right-1 flex size-4 items-center justify-center rounded-full border bg-foreground">
                 <Image
                   src={`/symbols/${network.icon}`}
-                  alt="optimism-logo"
+                  alt={`${network.name}-logo`}
                   width={16}
                   height={16}
                   className="size-3"
@@ -75,18 +77,25 @@ export default function SelectTokenModal({
         </DialogHeader>
         <div className="flex w-full flex-col gap-2 overflow-hidden px-2">
           <h2 className="text-sm">Networks</h2>
-          <div className="flex w-max gap-2 pb-3">
-            {networks.map(({ name, icon }, index) => (
-              <NetworkSelector
-                key={index}
-                network={name}
-                imageURL={icon}
-                isSelected={selectedNetwork === name}
-                onSelect={() => handleNetworkSelect(networks[index].name)}
-              />
-            ))}
-          </div>
+          <ScrollArea>
+            <div className="flex w-max gap-2 pb-3">
+              {networks.map(({ name, icon }, index) => (
+                <NetworkSelector
+                  key={index}
+                  network={name}
+                  imageURL={icon}
+                  isSelected={selectedNetwork === name}
+                  onSelect={() => handleNetworkSelect(networks[index].name)}
+                />
+              ))}
+            </div>
+            <ScrollBar
+              orientation="horizontal"
+              className="h-1.5 border-none bg-border-light"
+            />
+          </ScrollArea>
         </div>
+        <TokenSelector />
       </DialogContent>
     </Dialog>
   );

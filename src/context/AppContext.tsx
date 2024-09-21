@@ -15,6 +15,12 @@ export const AppContext = createContext({
   setSendAmount: (amount: string) => {},
   recipientAddress: "" as `0x${string}` | "",
   setRecipientAddress: (address: `0x${string}` | "") => {},
+  isFetchingAmount: false,
+  setIsFetchingAmount: (isFetching: boolean) => {},
+  fetchedAmount: "",
+  setFetchedAmount: (amount: string) => {},
+  relayerAddress: "",
+  setRelayerAddress: (address: string) => {},
 });
 
 export default function AppContextProvider({
@@ -29,6 +35,9 @@ export default function AppContextProvider({
     "",
   );
   const [sendAmount, setSendAmount] = useState<string>("");
+  const [isFetchingAmount, setIsFetchingAmount] = useState<boolean>(false);
+  const [fetchedAmount, setFetchedAmount] = useState<string>("");
+  const [relayerAddress, setRelayerAddress] = useState("");
 
   return (
     <AppContext.Provider
@@ -46,6 +55,12 @@ export default function AppContextProvider({
         setSendAmount,
         recipientAddress,
         setRecipientAddress,
+        isFetchingAmount,
+        setIsFetchingAmount,
+        fetchedAmount,
+        setFetchedAmount,
+        relayerAddress,
+        setRelayerAddress
       }}
     >
       {children}

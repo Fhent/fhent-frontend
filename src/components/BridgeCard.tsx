@@ -1,5 +1,6 @@
 import BridgeButton from "./BridgeButton";
 import NetworkCard from "./NetworkCard";
+import RelayerInput from "./RelayerInput";
 
 export default function BridgeCard() {
   return (
@@ -9,6 +10,7 @@ export default function BridgeCard() {
         <div className="relative flex flex-col gap-4">
           <NetworkCard />
           <NetworkCard type="to" />
+          <RelayerInput />
         </div>
       </div>
       <BridgeButton />

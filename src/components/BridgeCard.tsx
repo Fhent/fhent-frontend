@@ -1,3 +1,4 @@
+import BridgeButton from "./BridgeButton";
 import NetworkCard from "./NetworkCard";
 
 export default function BridgeCard() {
@@ -10,6 +11,7 @@ export default function BridgeCard() {
           <NetworkCard type="to" />
         </div>
       </div>
+      <BridgeButton />
     </div>
   );
 }

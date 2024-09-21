@@ -64,7 +64,6 @@ export default function TokenSelector() {
           placeholder="Search"
           className="flex-1 bg-transparent outline-none"
         />
-        ş
         <Search size={16} className="" />
       </div>
 

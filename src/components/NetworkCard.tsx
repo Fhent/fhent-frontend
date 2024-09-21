@@ -1,3 +1,6 @@
+import networks from "@/config/networks";
+import SelectTokenModal from "./Modal/SelectTokenModal";
+
 interface NetworkCardProps {
   type?: "from" | "to";
 }
@@ -16,6 +19,7 @@ export default function NetworkCard({ type = "from" }: NetworkCardProps) {
             />
           </div>
         </div>
+        <SelectTokenModal network={networks[0]} token={networks[0].tokens[0]} />
       </div>
     </div>
   );

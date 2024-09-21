@@ -4,6 +4,9 @@ import Header from "@/components/Header";
 import "./globals.css";
 import { headers } from "next/headers";
 import ContextProvider from "@/context";
+import Image from "next/image";
+import WormholeSVG from "/public/wormhole.svg";
+import Footer from "@/components/Footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,8 +35,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} relative grid min-h-screen grid-rows-[auto_1fr_auto] antialiased`}
       >
-        <Header />
-        <ContextProvider cookies={cookies}>{children}</ContextProvider>
+        <Image
+          src={WormholeSVG}
+          alt="background svg"
+          className="absolute bottom-0 right-0 -z-10 object-cover"
+        />
+        <ContextProvider cookies={cookies}>
+          <Header />
+          {children}
+          <Footer />
+        </ContextProvider>
       </body>
     </html>
   );

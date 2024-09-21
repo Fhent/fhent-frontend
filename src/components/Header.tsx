@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Header() {
   return (
-    <header className="flex w-full justify-center bg-black-dark shadow-black drop-shadow-lg">
+    <header className="flex w-full justify-center bg-black-dark">
       <div className="container flex items-center justify-between p-2">
         <div className="flex items-center gap-2">
           <Image

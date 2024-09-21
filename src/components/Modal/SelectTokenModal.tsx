@@ -53,7 +53,7 @@ export default function SelectTokenModal({
                 height={16}
                 className="size-8"
               />
-              <div className="absolute -bottom-1 -right-1 flex size-4 items-center justify-center rounded-full border bg-foreground">
+              <div className="absolute -bottom-1 -right-1 flex size-4 items-center justify-center rounded-full border" style={{background:network.color}}>
                 <Image
                   src={`/symbols/${network.icon}`}
                   alt={`${network.name}-logo`}

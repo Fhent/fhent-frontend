@@ -38,7 +38,10 @@ const TokenCard = ({
             height={16}
             className="size-6"
           />
-          <div className="absolute -bottom-1 -right-1 flex size-4 items-center justify-center rounded-full border bg-foreground">
+          <div
+            className="absolute -bottom-1 -right-1 flex size-4 items-center justify-center rounded-full border"
+            style={{ background: network.color }}
+          >
             <Image
               src={`/symbols/${network.icon}`}
               alt="optimism-logo"

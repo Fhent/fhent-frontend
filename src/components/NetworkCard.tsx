@@ -1,5 +1,4 @@
 "use client";
-import networks from "@/config/networks";
 import SelectTokenModal from "./Modal/SelectTokenModal";
 import { ChangeEvent, useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "@/context/AppContext";
@@ -28,7 +27,8 @@ export default function NetworkCard({ type = "from" }: NetworkCardProps) {
     targetToken,
     sourceNetwork,
     sourceToken,
-    fetchedAmount
+    fetchedAmount,
+    isFetchingAmount: loading
   } = useContext(AppContext);
 
   const [isRecipientAddressInputOpen, setIsRecipientAddressInputOpen] =
@@ -36,7 +36,6 @@ export default function NetworkCard({ type = "from" }: NetworkCardProps) {
   const [isRecipientAddressValid, setIsRecipientAddressValid] = useState(
     inputStatus.default,
   );
-  const [loading, setLoading] = useState(false);
   const { address: account } = useAccount();
   const recipientAddressRef = useRef<HTMLInputElement>(null);
 

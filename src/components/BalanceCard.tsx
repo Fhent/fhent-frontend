@@ -25,7 +25,6 @@ export default function BalanceCard() {
     refetchFhenixBalanceAll,
     refetchZamaBalanceAll,
     refetchAllBalances,
-    refetchZamaEncBalance
   } = useContext(AppContext);
 
   const { onWrap: onFhenixWrap } = useFhenixWrap(

@@ -1,6 +1,5 @@
 "use client";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import networks from "@/config/networks";
 import { Network, Token } from "@/types";
 import { Search } from "lucide-react";
 import Image from "next/image";

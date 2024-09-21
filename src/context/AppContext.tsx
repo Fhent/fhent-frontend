@@ -13,6 +13,8 @@ export const AppContext = createContext({
   setTargetNetwork: (network: Network) => {},
   setSourceToken: (token: Token) => {},
   setSendAmount: (amount: string) => {},
+  recipientAddress: "" as `0x${string}` | "",
+  setRecipientAddress: (address: `0x${string}` | "") => {},
 });
 
 export default function AppContextProvider({
@@ -23,6 +25,9 @@ export default function AppContextProvider({
   const [sourceNetwork, setSourceNetwork] = useState<Network>(networks[0]);
   const [targetNetwork, setTargetNetwork] = useState<Network>(networks[1]);
   const [sourceToken, setSourceToken] = useState<Token>(networks[0].tokens[0]);
+  const [recipientAddress, setRecipientAddress] = useState<`0x${string}` | "">(
+    "",
+  );
   const [sendAmount, setSendAmount] = useState<string>("");
 
   return (
@@ -39,6 +44,8 @@ export default function AppContextProvider({
         setTargetNetwork,
         setSourceToken,
         setSendAmount,
+        recipientAddress,
+        setRecipientAddress,
       }}
     >
       {children}

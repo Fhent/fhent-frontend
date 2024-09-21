@@ -14,9 +14,14 @@ const useUnwrap = (amount: string, refetchBalance?: () => any) => {
   const { chainId } = useAccount()
 
   const handleUnWrap = useCallback(async () => {
+    let newChainId = chainId
+    if (chainId !== fhenixHelium.id) {
+      const newChain = await switchChainAsync({ chainId: fhenixHelium.id })
+      newChainId = newChain.id
+    }
     const encryptedAmount = await fhenixClient.encrypt_uint64(BigInt(Number(amount) * 10 ** 6))
 
-    const walletClient = await getWalletClient(config, { chainId })
+    const walletClient = await getWalletClient(config, { chainId: newChainId })
 
     // @ts-expect-error - wclient is not null
     const contract = new Contract(addresses.fhenixWEERC20, abi, walletClient);

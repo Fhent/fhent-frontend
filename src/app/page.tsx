@@ -6,7 +6,7 @@ export default function Bridge() {
   return (
     <main className="container flex h-full flex-1 flex-col items-center py-20">
       <BridgeCard />
-      <Stepper currentStep={3} status="loading"/>
+      <Stepper />
       <BalanceCard />
     </main>
   );

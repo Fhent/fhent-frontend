@@ -40,6 +40,16 @@ export const AppContext = createContext({
   refetchFhenixBalanceAll: () => {},
   refetchZamaBalanceAll: () => {},
   refetchAllBalances: () => {},
+  currentStep: 0,
+  setCurrentStep: (step: number) => {},
+  stepStatus: "loading" as "loading" | "success" | "error" | "unknown",
+  setStepStatus: (status: "loading" | "success" | "error" | "unknown") => {},
+  isStepperVisible: false,
+  setIsStepperVisible: (isVisible: boolean) => {},
+  encryptedAmount: "",
+  setEncryptedAmount: (amount: string) => {},
+  encryptedTo: "",
+  setEncryptedTo: (address: string) => {},
 });
 
 export interface AppContextType {
@@ -72,6 +82,16 @@ export interface AppContextType {
   refetchFhenixBalanceAll: () => void;
   refetchZamaBalanceAll: () => void;
   refetchAllBalances: () => void;
+  currentStep: number;
+  setCurrentStep: (step: number) => void;
+  stepStatus: "loading" | "success" | "error" | "unknown";
+  setStepStatus: (status: "loading" | "success" | "error" | "unknown") => void;
+  isStepperVisible: boolean;
+  setIsStepperVisible: (isVisible: boolean) => void;
+  encryptedAmount: string;
+  setEncryptedAmount: (amount: string) => void;
+  encryptedTo: string;
+  setEncryptedTo: (address: string) => void;
 }
 export default function AppContextProvider({
   children,
@@ -89,6 +109,13 @@ export default function AppContextProvider({
   const [isFetchingAmount, setIsFetchingAmount] = useState<boolean>(false);
   const [fetchedAmount, setFetchedAmount] = useState<string>("");
   const [relayerAddress, setRelayerAddress] = useState("");
+  const [currentStep, setCurrentStep] = useState(0);
+  const [stepStatus, setStepStatus] = useState<
+    "loading" | "success" | "error" | "unknown"
+  >("loading");
+  const [isStepperVisible, setIsStepperVisible] = useState(false);
+  const [encryptedAmount, setEncryptedAmount] = useState("");
+  const [encryptedTo, setEncryptedTo] = useState("");
 
   const { address: account } = useAccount();
 
@@ -184,6 +211,16 @@ export default function AppContextProvider({
         refetchFhenixBalanceAll,
         refetchZamaBalanceAll,
         refetchAllBalances,
+        currentStep,
+        setCurrentStep,
+        stepStatus,
+        setStepStatus,
+        isStepperVisible,
+        setIsStepperVisible,
+        encryptedAmount,
+        setEncryptedAmount,
+        encryptedTo,
+        setEncryptedTo,
       }}
     >
       {children}

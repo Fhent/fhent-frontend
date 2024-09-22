@@ -1,9 +1,13 @@
+"use client";
+
+import { AppContext } from "@/context/AppContext";
 import {
   AlertCircle,
   CheckCircle2,
   LoaderCircleIcon,
   XCircle,
 } from "lucide-react";
+import { useContext } from "react";
 
 export const stepIcons = (
   status: "loading" | "success" | "error" | "unknown",
@@ -22,20 +26,20 @@ export const stepIcons = (
 };
 
 const steps = [
-  { id: 0, label: "Transaction oluşturuluyor" },
-  { id: 1, label: "Encryptleniyor" },
-  { id: 2, label: "Karşı ağa taşınıyor" },
-  { id: 3, label: "İşlem tamamlandı" },
+  { id: 0, label: "Intent is being encrypted and submitted" },
+  { id: 1, label: "Intent is being relayed" },
+  { id: 2, label: "Intent fulfilled" },
 ];
 
-interface StepperProps {
-  currentStep: number;
-  status: "loading" | "success" | "error" | "unknown";
-}
+export default function Stepper() {
+  const {
+    currentStep,
+    stepStatus: status,
+    isStepperVisible,
+  } = useContext(AppContext);
 
-export default function Stepper({ currentStep, status }: StepperProps) {
-  return (
-    <section className="absolute right-20 flex max-h-[300px] w-full max-w-[300px] flex-col overflow-y-auto rounded-lg border bg-black-dark shadow-lg">
+  return isStepperVisible ? (
+    <section className="absolute right-[20%] flex max-h-[300px] w-full max-w-[300px] flex-col overflow-y-auto rounded-lg border bg-black-dark shadow-lg">
       {steps.slice(0, currentStep + 1).map((step, index) => (
         <div
           key={index}
@@ -56,5 +60,5 @@ export default function Stepper({ currentStep, status }: StepperProps) {
         </div>
       ))}
     </section>
-  );
+  ) : null;
 }

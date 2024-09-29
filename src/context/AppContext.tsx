@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import addresses from "@/config/addresses";
 import { fhenixHelium, zamaDevnet } from "@/config/chains";
 import networks from "@/config/networks";
@@ -16,19 +18,19 @@ export const AppContext = createContext({
   sourceToken: networks[0].tokens[0],
   targetToken: networks[1].tokens[0],
   sendAmount: "",
-  setSourceNetwork: (network: Network) => {},
-  setTargetNetwork: (network: Network) => {},
-  setSourceToken: (token: Token) => {},
-  setTargetToken: (token: Token) => {},
-  setSendAmount: (amount: string) => {},
+  setSourceNetwork: (_network: Network) => {},
+  setTargetNetwork: (_network: Network) => {},
+  setSourceToken: (_token: Token) => {},
+  setTargetToken: (_token: Token) => {},
+  setSendAmount: (_amount: string) => {},
   recipientAddress: "" as `0x${string}` | "",
-  setRecipientAddress: (address: `0x${string}` | "") => {},
+  setRecipientAddress: (_address: `0x${string}` | "") => {},
   isFetchingAmount: false,
-  setIsFetchingAmount: (isFetching: boolean) => {},
+  setIsFetchingAmount: (_isFetching: boolean) => {},
   fetchedAmount: "",
-  setFetchedAmount: (amount: string) => {},
+  setFetchedAmount: (_amount: string) => {},
   relayerAddress: "",
-  setRelayerAddress: (address: string) => {},
+  setRelayerAddress: (_address: string) => {},
   fhenixBalance: 0n,
   zamaBalance: 0n,
   fhenixEncBalance: 0n,
@@ -41,15 +43,15 @@ export const AppContext = createContext({
   refetchZamaBalanceAll: () => {},
   refetchAllBalances: () => {},
   currentStep: 0,
-  setCurrentStep: (step: number) => {},
+  setCurrentStep: (_step: number) => {},
   stepStatus: "loading" as "loading" | "success" | "error" | "unknown",
-  setStepStatus: (status: "loading" | "success" | "error" | "unknown") => {},
+  setStepStatus: (_status: "loading" | "success" | "error" | "unknown") => {},
   isStepperVisible: false,
-  setIsStepperVisible: (isVisible: boolean) => {},
+  setIsStepperVisible: (_isVisible: boolean) => {},
   encryptedAmount: "",
-  setEncryptedAmount: (amount: string) => {},
+  setEncryptedAmount: (_amount: string) => {},
   encryptedTo: "",
-  setEncryptedTo: (address: string) => {},
+  setEncryptedTo: (_address: string) => {},
 });
 
 export interface AppContextType {

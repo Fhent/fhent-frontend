@@ -12,20 +12,15 @@ import { AppContext } from "@/context/AppContext";
 const useBridgeTokens = (
   to: `0x${string}`,
   amount: string,
-  refetchSourceBalance?: () => any,
-  refetchTargetBalance?: () => any,
+  refetchSourceBalance?: () => void,
+  refetchTargetBalance?: () => void,
 ) => {
   const fhenixClient = useFhenixClient();
   const config = useConfig();
   const { chainId } = useAccount();
   const { switchChainAsync } = useSwitchChain();
-  const {
-    setCurrentStep,
-    setIsStepperVisible,
-    setStepStatus,
-    setEncryptedAmount,
-    setEncryptedTo,
-  } = useContext(AppContext);
+  const { setCurrentStep, setIsStepperVisible, setStepStatus } =
+    useContext(AppContext);
 
   const handleBridgeTokens = useCallback(async () => {
     let newChainId = chainId;

@@ -8,8 +8,8 @@ import { useEthersSigner } from "../ethers/useEthersSigner";
 import { fhenixHelium } from "@/config/chains";
 
 const useEncryptedBalance = () => {
-  const client = useFhenixClient()
-  const signer = useEthersSigner({ chainId: fhenixHelium.chainId })
+  const client = useFhenixClient();
+  const signer = useEthersSigner({ chainId: fhenixHelium.chainId });
 
   const [permission, setPermission] = useState<Permission>();
 
@@ -19,16 +19,15 @@ const useEncryptedBalance = () => {
       const permit = await getPermit(addresses.fhenixWEERC20, signer.provider);
       const permission = client.extractPermitPermission(permit!);
       setPermission(permission);
-    }
+    };
 
     getPermission();
   }, [signer?.provider]);
 
   const { data: encBalance, refetch } = useReadContract({
-    // @ts-expect-error - wth
     address: addresses.fhenixWEERC20 as `0x${string}`,
     abi,
-    functionName: 'encryptedBalanceOf',
+    functionName: "encryptedBalanceOf",
     // @ts-expect-error - permission is not null
     args: [permission!],
     account: signer?.address as `0x${string}`,
@@ -38,6 +37,6 @@ const useEncryptedBalance = () => {
   console.log({ permission, encBalance, signer });
 
   return { balance: encBalance, permission, refetch };
-}
+};
 
 export default useEncryptedBalance;
